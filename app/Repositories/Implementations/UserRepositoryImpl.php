@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repository\Eloquent;
+namespace App\Repositories\Implementations;
 
 use App\Models\User;
-use App\Repository\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 
-class UserRepository extends BaseRepository implements UserRepositoryInterface
+class UserRepositoryImpl extends BaseRepositoryImpl implements UserRepository
 {
     /**
      * @var Model

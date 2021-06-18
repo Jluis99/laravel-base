@@ -2,123 +2,25 @@
 
 namespace App\Services;
 
-use App\Services\Interfaces\BaseServiceI;
-
-class BaseService implements BaseServiceI
+interface BaseService
 {
-    protected $repository;
+    public function all($columns = ['*'], $relations = []);
 
-    /**
-     * Get all models.
-     *
-     * @param array $columns
-     * @param array $relations
-     * @return Collection
-     */
-    public function all($columns = ['*'], $relations = [])
-    {
-        return $this->repository->all($columns, $relations);
-    }
+    public function allTrashed();
 
-    /**
-     * Get all trashed models.
-     *
-     * @return Collection
-     */
-    public function allTrashed()
-    {
-        return $this->repository->allTrashed();
-    }
+    public function findById(int $modelId, array $columns = ['*'], array $relations = [], array $appends = []);
 
-    /**
-     * Find model by id.
-     *
-     * @param int $modelId
-     * @param array $columns
-     * @param array $relations
-     * @param array $appends
-     * @return Model
-     */
-    public function findById(int $modelId, array $columns = ['*'], array $relations = [], array $appends = []) {
-        return $this->repository->findById($modelId);
-    }
+    public function findTrashedById(int $modelId);
 
-    /**
-     * Find trashed model by id.
-     *
-     * @param int $modelId
-     * @return Model
-     */
-    public function findTrashedById(int $modelId)
-    {
-        return $this->repository->findTrashedById($modelId);
-    }
+    public function findOnlyTrashedById(int $modelId);
 
-    /**
-     * Find only trashed model by id.
-     *
-     * @param int $modelId
-     * @return Model
-     */
-    public function findOnlyTrashedById(int $modelId)
-    {
-        return $this->repository->findOnlyTrashedById($modelId);
-    }
+    public function create(array $payload);
 
-    /**
-     * Create a model.
-     *
-     * @param array $payload
-     * @return Model
-     */
-    public function create(array $payload)
-    {
-        return $this->repository->create($payload);
-    }
+    public function update(int $modelId, array $payload);
 
-    /**
-     * Update existing model.
-     *
-     * @param int $modelId
-     * @param array $payload
-     * @return bool
-     */
-    public function update(int $modelId, array $payload)
-    {
-        return $this->repository->update($modelId, $payload);
-    }
+    public function deleteById(int $modelId);
 
-    /**
-     * Delete model by id.
-     *
-     * @param int $modelId
-     * @return bool
-     */
-    public function deleteById(int $modelId): bool
-    {
-        return $this->repository->deleteById($modelId);
-    }
+    public function restoreById(int $modelId);
 
-    /**
-     * Restore model by id.
-     *
-     * @param int $modelId
-     * @return bool
-     */
-    public function restoreById(int $modelId)
-    {
-        return $this->repository->restoreById($modelId);
-    }
-
-    /**
-     * Permanently delete model by id.
-     *
-     * @param int $modelId
-     * @return bool
-     */
-    public function permanentlyDeleteById(int $modelId): bool
-    {
-        return $this->repository->permanentlyDeleteById($modelId);
-    }
-
+    public function permanentlyDeleteById(int $modelId);
 }
