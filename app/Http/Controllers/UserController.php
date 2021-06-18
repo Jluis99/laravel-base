@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\UserRepositoryInterface;
+use App\Services\Interfaces\UserServiceI;
 
 class UserController extends Controller
 {
-    private $userRepository;
+    private $userService;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserServiceI $userService)
     {
-        $this->userRepository = $userRepository;
+        $this->userService = $userService;
     }
 
     public function index()
     {
-        return response()->json($this->userRepository->all(), 200);
+        return response()->json($this->userService->all(), 200);
     }
 }

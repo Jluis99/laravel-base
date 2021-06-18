@@ -14,7 +14,7 @@ interface EloquentRepositoryInterface
      * @param array $relations
      * @return Collection
      */
-    public function all(array $columns = ['*'], array $relations = []): Collection;
+    public function all(array $columns = ['*'], array $relations = []);
 
     /**
      * Get all trashed models.

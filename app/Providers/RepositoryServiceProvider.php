@@ -6,6 +6,8 @@ use App\Repository\EloquentRepositoryInterface;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\Eloquent\UserRepository;
 use App\Repository\UserRepositoryInterface;
+use App\Services\BaseService;
+use App\Services\Interfaces\BaseServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
