@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Services\UserService;
+use App\Services\MailService;
+
+use App\Services\Implementations\MailServiceImpl;
 use App\Services\Implementations\UserServiceImpl;
+
 use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
@@ -16,6 +20,7 @@ class ServiceServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UserService::class, UserServiceImpl::class);
+        $this->app->bind(MailService::class, MailServiceImpl::class);
     }
 
     /**
