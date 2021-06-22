@@ -7,6 +7,49 @@ use Illuminate\Database\Eloquent\Model;
 
 interface BaseRepository
 {
+
+    /**
+     * Find data by its primary key.
+     *
+     * @param mixed $id
+     * @param array $columns
+     *
+     * @return Model|Collection
+     */
+    public function findOrFail($id, $columns = ['*']);
+
+    /**
+     * Find data by field and value
+     *
+     * @param string $field
+     * @param string $value
+     * @param array  $columns
+     *
+     * @return Model|Collection
+     */
+    public function findBy($field, $value, $columns = ['*']);
+
+    /**
+     * Find data by field
+     *
+     * @param string $attribute
+     * @param mixed  $value
+     * @param array  $columns
+     *
+     * @return mixed
+     */
+    public function findAllBy($attribute, $value, $columns = ['*']);
+
+    /**
+     * Find data by multiple fields
+     *
+     * @param array $where
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function findWhere(array $where, $columns = ['*']);
+
     /**
      * Get all models.
      *
@@ -15,13 +58,6 @@ interface BaseRepository
      * @return Collection
      */
     public function all(array $columns = ['*'], array $relations = []);
-
-    /**
-     * Get all trashed models.
-     *
-     * @return Collection
-     */
-    public function allTrashed(): Collection;
 
     /**
      * Find model by id.
@@ -38,22 +74,6 @@ interface BaseRepository
         array $relations = [],
         array $appends = []
     ): ?Model;
-
-    /**
-     * Find trashed model by id.
-     *
-     * @param int $modelId
-     * @return Model
-     */
-    public function findTrashedById(int $modelId): ?Model;
-
-    /**
-     * Find only trashed model by id.
-     *
-     * @param int $modelId
-     * @return Model
-     */
-    public function findOnlyTrashedById(int $modelId): ?Model;
 
     /**
      * Create a model.
@@ -79,20 +99,4 @@ interface BaseRepository
      * @return bool
      */
     public function deleteById(int $modelId): bool;
-
-    /**
-     * Restore model by id.
-     *
-     * @param int $modelId
-     * @return bool
-     */
-    public function restoreById(int $modelId): bool;
-
-    /**
-     * Permanently delete model by id.
-     *
-     * @param int $modelId
-     * @return bool
-     */
-    public function permanentlyDeleteById(int $modelId): bool;
 }
